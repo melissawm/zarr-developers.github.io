@@ -10,22 +10,19 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Zarr - Zarr</title>
-<meta name="description" content="Zarr is an open source project developing specifications and software libraries for storage of data that is structured as N-dimensional typed arrays (also known as tensors) in a way that is compatible with parallel and distributed computing applications.">
+<!-- begin _includes/seo.html --><title>Zarr protocol v3 design update - Zarr</title>
+<meta name="description" content="Today I put together some slides summarising the current state of exploratory work on the Zarr v3 protocol spec. The purpose of this blog post is to share those slides more widely, and to provide some context explaining why work has started on a v3 spec.">
 
 
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Zarr">
-<meta property="og:title" content="Zarr">
-<meta property="og:url" content="/404.html">
+<meta property="og:title" content="Zarr protocol v3 design update">
+<meta property="og:url" content="/zarr/specs/2019/06/19/zarr-v3-update.html">
 
 
-  <meta property="og:description" content="Zarr is an open source project developing specifications and software libraries for storage of data that is structured as N-dimensional typed arrays (also known as tensors) in a way that is compatible with parallel and distributed computing applications.">
-
-
-
+  <meta property="og:description" content="Today I put together some slides summarising the current state of exploratory work on the Zarr v3 protocol spec. The purpose of this blog post is to share those slides more widely, and to provide some context explaining why work has started on a v3 spec.">
 
 
 
@@ -33,9 +30,14 @@
 
 
 
+  <meta property="article:published_time" content="2019-06-19T00:00:00-03:00">
 
 
-<link rel="canonical" href="/404.html">
+
+
+
+
+<link rel="canonical" href="/zarr/specs/2019/06/19/zarr-v3-update.html">
 
 
 
@@ -85,7 +87,7 @@
 
   </head>
 
-  <body class="layout--default">
+  <body class="layout--home">
     <nav class="skip-links">
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
@@ -150,25 +152,176 @@
 
 
     <div class="initial-content">
-      <style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
+      
 
-<div class="container">
-  <h1>404</h1>
 
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  <h3 class="nav__title" style="padding-left: 0;">Content</h3>
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <div class="archive">
+    
+      <h1 id="page-title" class="page__title">Zarr protocol v3 design update</h1>
+    
+    <p>Today I put together some <a href="https://zarr-developers.github.io/slides/v3-update-20190619.html">slides summarising the current state of
+exploratory work on the Zarr v3 protocol
+spec</a>. The
+purpose of this blog post is to share those slides more widely, and to
+provide some context explaining why work has started on a v3 spec.</p>
+
+<h2 id="why-work-on-a-v3-spec">Why work on a v3 spec?</h2>
+
+<p>The <a href="https://zarr.readthedocs.io/en/stable/spec/v2.html">current (v2) Zarr
+spec</a> is
+implemented in a number of software libraries, and is a stable and
+robust protocol that is used in production in a number of different
+scientific communities. If you need to store and compute in parallel
+against large array-like data, it’s a good solution. So why start
+thinking about a new protocol version?</p>
+
+<h3 id="language-agnostic">Language-agnostic</h3>
+
+<p>One reason is that the v2 protocol is somewhat Python-centric, and
+includes some features which are not straightforward to implement in
+other languages. This has meant that implementations do not all
+support the same feature set. It would be good to have a minimal v3
+protocol spec that could be fully implemented in any language, so all
+implementations have parity around a core feature set.</p>
+
+<h3 id="unifying-zarr-and-n5">Unifying Zarr and N5</h3>
+
+<p>Another reason is that we would like to merge development efforts
+between the Zarr and N5 communities, and so a goal for the v3 spec is
+to unify the two approaches and provide a common implementation
+target.</p>
+
+<h3 id="extensibility">Extensibility</h3>
+
+<p>A third reason is that a number of different groups have started
+experimenting and extending the Zarr protocol in interesting ways, but
+it’s not always clear how to extend the v2 protocol to support new
+features. It would be good if the v3 spec provided a variety of clear
+extension points and extension mechanisms.</p>
+
+<h3 id="cloud-storage">Cloud storage</h3>
+
+<p>Finally, while the v2 spec can be used very effectively with
+distributed storage systems like Amazon S3 or Google Cloud Storage,
+there is room for improvement, particularly regarding how metadata is
+stored and organised.</p>
+
+<h2 id="zarr-v3-design-update">Zarr v3 design update</h2>
+
+<p>I you are interested in knowing more about the current status of work
+on the v3 spec, please take a look at the <a href="https://zarr-developers.github.io/slides/v3-update-20190619.html">v3 design update
+slides</a>. The
+slides use reveal.js and have both horizontal and vertical
+navigation - if you haven’t seen that before, then navigate downwards
+first wherever you can, before navigating to the right.</p>
+
+<p>As I mention in the slides, the current v3 spec is just a straw man,
+meant to illustrate some ideas and potential solutions, but everything
+is up for discussion. So if you have any comments or ideas, please do
+get in touch, anyone is welcome to participate.</p>
+
+<hr />
+
+<p>Blog post written by <a href="https://github.com/alimanfoo">Alistair Miles</a>.</p>
+
+
+<h3 class="archive__subtitle">Recent Posts</h3>
+
+
+
+
+<div class="entries-list">
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/zarr/specs/2019/06/19/zarr-v3-update.html" rel="permalink">Zarr protocol v3 design update
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Today I put together some slides summarising the current state of
+exploratory work on the Zarr v3 protocol
+spec. The
+purpose of this blog post is to share th...</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/zarr/python/release/2019/05/23/zarr-2.3-release.html" rel="permalink">Zarr Python 2.3 release
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Recently we released version 2.3 of the Python Zarr
+package, which implements the
+Zarr protocol for storing N-dimensional typed arrays, and is designed
+for u...</p>
+  </article>
+</div>
+
+  
+</div>
+
+
+
+
+  </div>
 </div>
 
       

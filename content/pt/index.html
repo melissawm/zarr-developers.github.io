@@ -11,7 +11,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Zarr - Zarr</title>
-<meta name="description" content="Zarr is an open source project developing specifications and software libraries for storage of data that is structured as N-dimensional typed arrays (also known as tensors) in a way that is compatible with parallel and distributed computing applications.">
+<meta name="description" content="Have beautiful data in Zarr? Show us on Bluesky!">
 
 
 
@@ -19,23 +19,25 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Zarr">
 <meta property="og:title" content="Zarr">
-<meta property="og:url" content="/404.html">
+<meta property="og:url" content="/content/pt/">
 
 
-  <meta property="og:description" content="Zarr is an open source project developing specifications and software libraries for storage of data that is structured as N-dimensional typed arrays (also known as tensors) in a way that is compatible with parallel and distributed computing applications.">
-
-
-
+  <meta property="og:description" content="Have beautiful data in Zarr? Show us on Bluesky!">
 
 
 
-
+  <meta property="og:image" content="/images/llc4320_sst.png">
 
 
 
 
 
-<link rel="canonical" href="/404.html">
+
+
+
+
+
+<link rel="canonical" href="/content/pt/">
 
 
 
@@ -85,7 +87,7 @@
 
   </head>
 
-  <body class="layout--default">
+  <body class="layout--single">
     <nav class="skip-links">
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
@@ -150,25 +152,237 @@
 
 
     <div class="initial-content">
-      <style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
+      
+  
 
-<div class="container">
-  <h1>404</h1>
 
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/llc4320_sst.png');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          Zarr
+
+        
+      </h1>
+      
+        <p class="page__lead">Have beautiful data in Zarr? Show us on Bluesky!
+</p>
+      
+      
+
+
+      
+        <p>
+        
+          <a href="https://bsky.app/intent/compose?text=@zarr.dev%20%23beautifuldata" class="btn btn--light-outline btn--large">Share here!</a>
+        
+        </p>
+      
+    </div>
+  
+  
+    <span class="page__hero-caption">Credit: Ryan Abernathey
+</span>
+  
+</div>
+
+
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  <h3 class="nav__title" style="padding-left: 0;">Content</h3>
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <span class="nav__sub-title">Sobre</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/#description">Descrição</a></li>
+            
+              <li><a href="/#applications">Aplicações</a></li>
+            
+              <li><a href="/#features">Características</a></li>
+            
+              <li><a href="/#sponsorship">Patrocínio</a></li>
+            
+              <li><a href="/#videos">Vídeos</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">Subpáginas</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/content/pt/adopters">Adotantes</a></li>
+            
+              <li><a href="/blog">Blog</a></li>
+            
+              <li><a href="/content/pt/community">Comunidade</a></li>
+            
+              <li><a href="/content/pt/conventions">Convenções</a></li>
+            
+              <li><a href="/content/pt/datasets">Conjuntos de dados</a></li>
+            
+              <li><a href="/content/pt/implementations">Implementacões</a></li>
+            
+              <li><a href="/content/pt/office-hours">Reuniões</a></li>
+            
+              <li><a href="/slides">Apresentações</a></li>
+            
+              <li><a href="https://zarr-specs.readthedocs.io/">Especificação</a></li>
+            
+              <li><a href="/zeps">ZEPs</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <meta itemprop="description" content="Have beautiful data in Zarr? Show us on Bluesky!">
+    
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Zarr is a community project to develop specifications and software for
+storage of large N-dimensional typed arrays, also commonly known as
+tensors. A particular focus of Zarr is to provide support for storage
+using distributed systems like cloud object stores, and to enable
+efficient I/O for parallel computing applications.</p>
+
+<h2 id="description">Description</h2>
+
+<p>Zarr is motivated by the need for a simple, transparent, open, and
+community-driven format that supports high-throughput distributed I/O on
+different storage systems. Zarr data can be stored in any storage system that
+can be represented as a key-value store, including most commonly POSIX file
+systems and cloud object storage but also zip files as well as relational and
+document databases.</p>
+
+<p>See the following GitHub repositories for more information:</p>
+
+<ul>
+  <li><a href="https://github.com/zarr-developers/zarr">Zarr Python</a></li>
+  <li><a href="https://github.com/zarr-developers/zarr-specs">Zarr Specs</a></li>
+  <li><a href="https://github.com/zarr-developers/numcodecs">Numcodecs</a></li>
+  <li><a href="https://github.com/constantinpape/z5">Z5</a></li>
+  <li><a href="https://github.com/saalfeldlab/n5">N5</a></li>
+  <li><a href="https://github.com/meggart/Zarr.jl">Zarr.jl</a></li>
+  <li><a href="https://github.com/lasersonlab/ndarray.scala">ndarray.scala</a></li>
+</ul>
+
+<h2 id="applications">Applications</h2>
+
+<ul>
+  <li>Simple and fast serialization of NumPy-like arrays, accessible from languages including Python, C, C++, Rust, Javascript and Java</li>
+  <li>Multi-scale n-dimensional image storage, e.g. in light and electron microscopy</li>
+  <li>Geospatial rasters, e.g. following the NetCDF / CF metadata conventions</li>
+</ul>
+
+<h2 id="features">Features</h2>
+
+<ul>
+  <li>Chunk multi-dimensional arrays along any dimension.</li>
+  <li>Store arrays in memory, on disk, inside a Zip file, on S3, etc.</li>
+  <li>Read and write arrays concurrently from multiple threads or processes.</li>
+  <li>Organize arrays into hierarchies via annotatable groups.</li>
+</ul>
+
+<h2 id="sponsorship">Sponsorship</h2>
+
+<p>Zarr is a Sponsored Project of NumFOCUS, a US 501(c)(3) public charity.</p>
+
+<p>NumFOCUS Sponsored Projects rely on the generous support of corporate sponsors, institutional partners, and individual donors.</p>
+
+<h2 id="videos">Videos</h2>
+
+<p><a href="https://www.youtube.com/playlist?list=PLvkeNUPrCU04Xvcph4ErxsRkZq28Oucr7">Videos</a>
+of community members talking about Zarr. If you have a video you’d like us to share, let us know!</p>
+
+<div class="video">
+    <figure>
+        <iframe width="640" height="480" src="https://www.youtube.com/embed/videoseries?list=PLvkeNUPrCU04Xvcph4ErxsRkZq28Oucr7" frameborder="0" allowfullscreen=""></iframe>
+    </figure>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
 </div>
 
       

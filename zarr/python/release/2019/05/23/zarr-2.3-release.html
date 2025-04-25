@@ -1,0 +1,535 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Zarr Python 2.3 release - Zarr</title>
+<meta name="description" content="Recently we released version 2.3 of the Python Zarr package, which implements the Zarr protocol for storing N-dimensional typed arrays, and is designed for use in distributed and parallel computing. This post provides an overview of new features in this release, and some information about future directions for Zarr.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Zarr">
+<meta property="og:title" content="Zarr Python 2.3 release">
+<meta property="og:url" content="/zarr/python/release/2019/05/23/zarr-2.3-release.html">
+
+
+  <meta property="og:description" content="Recently we released version 2.3 of the Python Zarr package, which implements the Zarr protocol for storing N-dimensional typed arrays, and is designed for use in distributed and parallel computing. This post provides an overview of new features in this release, and some information about future directions for Zarr.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-05-23T00:00:00-03:00">
+
+
+
+
+
+
+<link rel="canonical" href="/zarr/python/release/2019/05/23/zarr-2.3-release.html">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Zarr Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+  
+    <script src="/assets/js/language_switcher.js"></script>
+  
+
+
+    <!-- favicon by https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=5">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=5">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=5">
+<link rel="manifest" href="/site.webmanifest?v=5">
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=5" color="#5bbad5">
+<link rel="shortcut icon" href="/favicon.ico?v=5">
+<meta name="apple-mobile-web-app-title" content="Zarr">
+<meta name="application-name" content="Zarr">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+  </head>
+
+  <body class="layout--home">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+
+<div class="masthead">
+    <div class="masthead__inner-wrap">
+        <div class="masthead__menu">
+            <nav id="site-nav" class="greedy-nav">
+                
+                <a class="site-logo" href="/"><img src="/android-chrome-512x512.png"
+                        alt="Zarr"></a>
+                
+                <a class="site-title" href="/">
+                    Zarr
+                    <span class="site-subtitle">chunked, compressed, N-dimensional arrays</span>
+                </a><ul class="visible-links" id="en"><a href="https://zarr.readthedocs.io/en/stable/"  >Documentation</a>
+                                </li><a href="https://zarr.readthedocs.io/en/stable/developers/contributing.html"  >Contribute</a>
+                                </li><a href="https://zarr.readthedocs.io/en/stable/quickstart.html"  >Python Quickstart</a>
+                                </li></ul><ul class="visible-links" id="es"><a href="https://zarr.readthedocs.io/en/stable/"  >Documentación</a>
+                                </li><a href="https://zarr.readthedocs.io/en/stable/developers/contributing.html"  >Contribuye</a>
+                                </li><a href="https://zarr.readthedocs.io/en/stable/quickstart.html"  >Python Quickstart</a>
+                                </li></ul><ul class="visible-links" id="pt"><a href="https://zarr.readthedocs.io/en/stable/"  >Documentação</a>
+                                </li><a href="https://zarr.readthedocs.io/en/stable/developers/contributing.html"  >Contribuir</a>
+                                </li><a href="https://zarr.readthedocs.io/en/stable/quickstart.html"  >Python Quickstart</a>
+                                </li></ul>
+                <button class="search__toggle" type="button">
+                    <span class="visually-hidden">Toggle
+                        search</span>
+                    <i class="fas fa-search"></i>
+                </button>
+                
+                <div class="masthead__dropdown" style="align-self: end;"></div>
+                    <span class="visually-hidden">Toggle
+                        search</span>
+                    <select class="masthead__dropdown-select" style="box-shadow: none; background-color: unset; margin-bottom: 0px;" onchange="change_language()" id="select_language">
+                        
+                            <option value="/content/en/">English</option>
+                        
+                            <option value="/content/es/">Español</option>
+                        
+                            <option value="/content/pt/">Português</option>
+                        
+                    </select>
+                </div>
+                <button class="greedy-nav__toggle hidden" type="button">
+                    <span class="visually-hidden">Toggle menu</span>
+                    <div class="navicon"></div>
+                </button>
+                <ul class="hidden-links hidden"></ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  <h3 class="nav__title" style="padding-left: 0;">Content</h3>
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <div class="archive">
+    
+      <h1 id="page-title" class="page__title">Zarr Python 2.3 release</h1>
+    
+    <p>Recently we released version 2.3 of the <a href="https://zarr.readthedocs.io/en/stable/">Python Zarr
+package</a>, which implements the
+Zarr protocol for storing N-dimensional typed arrays, and is designed
+for use in distributed and parallel computing. This post provides an
+overview of new features in this release, and some information about
+future directions for Zarr.</p>
+
+<h2 id="new-storage-options-for-distributed-and-cloud-computing">New storage options for distributed and cloud computing</h2>
+
+<p>A key feature of the Zarr protocol is that the underlying storage
+system is decoupled from other components via a simple key/value
+interface. In Python, this interface corresponds to the
+<a href="https://docs.python.org/3/glossary.html#term-mapping"><code class="language-plaintext highlighter-rouge">MutableMapping</code>
+interface</a>,
+which is the interface that Python
+<a href="https://docs.python.org/3/library/stdtypes.html#dict"><code class="language-plaintext highlighter-rouge">dict</code></a>
+implements. I.e., anything <code class="language-plaintext highlighter-rouge">dict</code>-like can be used to store Zarr
+data. The simplicity of this interface means it is relatively
+straightforward to add support for a range of different storage
+systems. The 2.3 release adds support for storage using <a href="https://zarr.readthedocs.io/en/stable/api/storage.html#zarr.storage.SQLiteStore">SQLite</a>, <a href="https://zarr.readthedocs.io/en/stable/api/storage.html#zarr.storage.RedisStore">Redis</a>, <a href="https://zarr.readthedocs.io/en/stable/api/storage.html#zarr.storage.MongoDBStore">MongoDB</a> and <a href="https://zarr.readthedocs.io/en/stable/api/storage.html#zarr.storage.ABSStore">Azure Blob Storage</a>.</p>
+
+<p>For example, here’s code that creates an array using MongoDB:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">zarr</span>
+<span class="n">store</span> <span class="o">=</span> <span class="n">zarr</span><span class="p">.</span><span class="n">MongoDBStore</span><span class="p">(</span><span class="s">'localhost'</span><span class="p">)</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">zarr</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="n">store</span><span class="o">=</span><span class="n">store</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">bar</span><span class="p">.</span><span class="n">create_group</span><span class="p">(</span><span class="s">'foo'</span><span class="p">)</span>
+<span class="n">bar</span> <span class="o">=</span> <span class="n">foo</span><span class="p">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s">'bar'</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="n">chunks</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">bar</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">store</span><span class="p">.</span><span class="n">close</span><span class="p">()</span></code></pre></figure>
+
+<p>To do the same thing but storing the data in the cloud via Azure
+Blob Storage, replace the instantiation of the <code class="language-plaintext highlighter-rouge">store</code> object with:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">store</span> <span class="o">=</span> <span class="n">zarr</span><span class="p">.</span><span class="n">ABSStore</span><span class="p">(</span><span class="n">container</span><span class="o">=</span><span class="s">'test'</span><span class="p">,</span> <span class="n">account_name</span><span class="o">=</span><span class="s">'foo'</span><span class="p">,</span> <span class="n">account_key</span><span class="o">=</span><span class="s">'bar'</span><span class="p">)</span></code></pre></figure>
+
+<p>Support for other cloud object storage storage services was already
+available via other packages, with Amazon S3 supported via the <a href="http://s3fs.readthedocs.io/en/latest/">s3fs</a> package, and Google Cloud
+Storage supported via the <a href="https://gcsfs.readthedocs.io/en/latest/">gcsfs</a> package. Further notes on
+using cloud storage are available from the <a href="https://zarr.readthedocs.io/en/stable/tutorial.html#distributed-cloud-storage">Zarr
+tutorial</a>.</p>
+
+<p>The attraction of cloud storage is that total I/O bandwidth scales
+linearly with the size of a computing cluster, so there are no
+technical limits to the size of the data or computation you can scale
+up to. Here’s a slide from a recent presentation by <a href="https://github.com/rabernat">Ryan
+Abernathey</a> showing how I/O scales when
+using Zarr over Google Cloud Storage:</p>
+
+<script async="" class="speakerdeck-embed" data-slide="22" data-id="1621118c5987411fb55fdcf503cb331d" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h2 id="optimisations-for-cloud-storage-consolidated-metadata">Optimisations for cloud storage: consolidated metadata</h2>
+
+<p>One issue with using cloud object storage is that, although total I/O
+throughput can be high, the latency involved in each request to read
+the contents of an object can be &gt;100 ms, even when reading from
+compute nodes within the same data centre. This latency can add up
+when reading metadata from many arrays, because in Zarr each array has
+its own metadata stored in a separate object.</p>
+
+<p>To work around this, the 2.3 release adds an experimental feature to
+consolidate metadata for all arrays and groups within a hierarchy into
+a single object, which can be read once via a single request. Although
+this is not suitable for rapidly changing datasets, it can be good for
+large datasets which are relatively static.</p>
+
+<p>To use this feature, two new convenience functions have been
+added. The
+<a href="https://zarr.readthedocs.io/en/stable/api/convenience.html#zarr.convenience.consolidate_metadata"><code class="language-plaintext highlighter-rouge">consolidate_metadata()</code></a>
+function performs the initial consolidation, reading all metadata and
+combining them into a single object. Once you have done that and
+deployed the data to a cloud object store, the
+<a href="https://zarr.readthedocs.io/en/stable/api/convenience.html#zarr.convenience.open_consolidated"><code class="language-plaintext highlighter-rouge">open_consolidated()</code></a>
+function can be used to read data, making use of the consolidated
+metadata.</p>
+
+<p>Support for the new consolidated metadata feature is also now
+available via
+<a href="http://xarray.pydata.org/en/stable/generated/xarray.open_zarr.html">xarray</a>
+and
+<a href="https://intake-xarray.readthedocs.io/en/latest/index.html">intake-xarray</a>
+(see <a href="https://www.anaconda.com/intake-taking-the-pain-out-of-data-access/">this blog
+post</a>
+for an introduction to intake), and many of the datasets in <a href="https://pangeo-data.github.io/pangeo-datastore/">Pangeo’s
+cloud data catalog</a>
+use Zarr with consolidated metadata.</p>
+
+<p>Here’s an example of how to open a Zarr dataset from Pangeo’s data
+catalog via intake:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">intake</span>
+<span class="n">cat_url</span> <span class="o">=</span> <span class="s">'https://raw.githubusercontent.com/pangeo-data/pangeo-datastore/master/intake-catalogs/master.yaml'</span>
+<span class="n">cat</span> <span class="o">=</span> <span class="n">intake</span><span class="p">.</span><span class="n">Catalog</span><span class="p">(</span><span class="n">cat_url</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">cat</span><span class="p">.</span><span class="n">atmosphere</span><span class="p">.</span><span class="n">gmet_v1</span><span class="p">.</span><span class="n">to_dask</span><span class="p">()</span></code></pre></figure>
+
+<p>…and <a href="https://github.com/pangeo-data/pangeo-datastore/blob/aa3f12bcc3be9584c1a9071235874c9d6af94a4e/intake-catalogs/atmosphere.yaml#L6">here’s the underlying catalog
+entry</a>.</p>
+
+<h2 id="compatibility-with-n5">Compatibility with N5</h2>
+
+<p>Around the same time that development on Zarr was getting started, a
+separate team led by <a href="https://github.com/axtimwalde">Stephan Saafeld</a>
+at the Janelia research campus was experiencing similar challenges
+storing and computing with large amounts of neural imaging data, and
+developed a software library called
+<a href="https://github.com/saalfeldlab/n5">N5</a>. N5 is implemented in Java but
+is very similar to Zarr in the approach it takes to storing both
+metadata and data chunks, and to decoupling the storage backend to
+enable efficient use of cloud storage.</p>
+
+<p>There is a lot of commonality between Zarr and N5 and we are working
+jointly to bring the two approaches together. As a first experimental
+step towards that goal, the Zarr 2.3 release includes an <a href="https://zarr.readthedocs.io/en/stable/api/n5.html#zarr.n5.N5Store">N5 storage
+adapter</a>
+which allows reading and writing of data on disk in the N5
+format.</p>
+
+<h2 id="support-for-the-buffer-protocol">Support for the buffer protocol</h2>
+
+<p>Zarr is intended to work efficiently across a range of different
+storage systems with different latencies and bandwidth, from cloud
+object stores to local disk and memory. In many of these settings,
+making efficient use of local memory, and avoiding memory copies
+wherever possible, can make a substantial difference to
+performance. This is particularly true within the
+<a href="http://numcodecs.rtfd.io">Numcodecs</a> package, which is a companion to
+Zarr and provides implementations of compression and filter codecs
+such as Blosc and Zstandard. A key aspect of achieving fewer memory
+copies has been to leverage the Python buffer protocol.</p>
+
+<p>The <a href="https://docs.python.org/3/c-api/buffer.html">Python buffer
+protocol</a> is a
+specification for how to share large blocks of memory between
+different libraries without copying. This protocol has evolved over
+time from its original introduction in Python 2 and later revamped
+implementation added in Python 3 (with backports to Python 2.6 and
+2.7). Due to the changes in its behavior from Python 2 to Python 3 and
+what objects supported which implementation of the buffer protocol, it
+was a bit challenging to leverage effectively in Zarr.</p>
+
+<p>Thanks to some under-the-hood changes in Zarr 2.3 and Numcodecs 0.6,
+the buffer protocol is now cleanly supported for Python 2/3 in both
+libraries when working with data. In addition to improved memory
+handling and performance, this should make it easier for users
+developing their own stores, compressors, and filters to use with
+Zarr. Also it has cutdown on the amount of code specialized for
+handling different Python versions.</p>
+
+<h2 id="future-developments">Future developments</h2>
+
+<p>There is a growing community of interest around new approaches to
+storage of array-like data, particularly in the cloud. For example,
+<a href="https://github.com/tam203">Theo McCaie</a> from the UK Met Office
+Informatics Lab recently wrote a series of blog posts about the
+challenges involved in <a href="https://medium.com/informatics-lab/creating-a-data-format-for-high-momentum-datasets-a394fa48b671">storing 200TB of “high momentum” weather model
+data every
+day</a>. This
+is an exciting space to be working in and we’d like to do what we can
+to build connections and share knowledge and ideas between
+communities. We’ve started a <a href="https://github.com/zarr-developers/zarr/issues/315">regular
+teleconference</a>
+which is open to anyone to join, and there is a new <a href="https://gitter.im/zarr-developers/community">gitter
+channel</a> for general
+discussion.</p>
+
+<p>The main focus of our conversations so far has been setting up work
+towards development of a new set of specifications that support the
+features of both Zarr and N5, and provide a platform for exploration
+and development of new features, while also identifying a minimal core
+protocol that can be implemented in a range of different programming
+languages. It is still relatively early days and there are lots of
+open questions to work through, both on the technical side and in
+terms of how we organise and coordinate efforts. However, the
+community is very friendly and supportive, and anyone is welcome to
+participate, so if you have an interest please do consider getting
+involved.</p>
+
+<p>If you would like to stay in touch with or contribute to new
+developments, keep an eye on the
+<a href="https://github.com/zarr-developers/zarr">zarr</a> and
+<a href="https://github.com/zarr-developers/zarr-specs">zarr-specs</a> GitHub
+repositories, and please feel free to raise issues or add comments if
+you have any questions or ideas.</p>
+
+<h2 id="and-finally-scipy">And finally… SciPy!</h2>
+
+<p>If you’re coming to SciPy this year, we’re very pleased to be giving a
+talk on Zarr on <a href="https://www.eiseverywhere.com/ehome/381993">day 1 of the conference (Wednesday 10
+July)</a>. Several members of
+the Zarr community will be at the conference, and there are sprints
+going on after the conference in a number of related areas, including
+an Xarray sprint on the Saturday. Please do say hi or <a href="https://github.com/zarr-developers/zarr/issues/396">drop us a
+comment on this
+issue</a> if you’d
+like to connect and discuss anything.</p>
+
+<hr />
+
+<p>Blog post written by <a href="https://github.com/alimanfoo">Alistair Miles</a>
+and <a href="https://github.com/jakirkham">John Kirkham</a>.</p>
+
+
+<h3 class="archive__subtitle">Recent Posts</h3>
+
+
+
+
+<div class="entries-list">
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/zarr/specs/2019/06/19/zarr-v3-update.html" rel="permalink">Zarr protocol v3 design update
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Today I put together some slides summarising the current state of
+exploratory work on the Zarr v3 protocol
+spec. The
+purpose of this blog post is to share th...</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/zarr/python/release/2019/05/23/zarr-2.3-release.html" rel="permalink">Zarr Python 2.3 release
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Recently we released version 2.3 of the Python Zarr
+package, which implements the
+Zarr protocol for storing N-dimensional typed arrays, and is designed
+for u...</p>
+  </article>
+</div>
+
+  
+</div>
+
+
+
+
+  </div>
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://bsky.app/profile/zarr.dev" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-bluesky" aria-hidden="true"></i> Bluesky</a></li>
+        
+      
+        
+          <li><a href="https://fosstodon.org/@zarr" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-mastodon" aria-hidden="true"></i> Mastodon</a></li>
+        
+      
+        
+          <li><a href="https://github.com/zarr-developers" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://ossci.zulipchat.com/" rel="nofollow noopener noreferrer"><i class="fas fa-comments" aria-hidden="true"></i> Zulip</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="">Zarr</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

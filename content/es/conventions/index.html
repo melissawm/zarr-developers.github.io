@@ -10,7 +10,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Zarr - Zarr</title>
+<!-- begin _includes/seo.html --><title>Zarr Conventions - Zarr</title>
 <meta name="description" content="Zarr is an open source project developing specifications and software libraries for storage of data that is structured as N-dimensional typed arrays (also known as tensors) in a way that is compatible with parallel and distributed computing applications.">
 
 
@@ -18,8 +18,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Zarr">
-<meta property="og:title" content="Zarr">
-<meta property="og:url" content="/404.html">
+<meta property="og:title" content="Zarr Conventions">
+<meta property="og:url" content="/content/es/conventions/">
 
 
   <meta property="og:description" content="Zarr is an open source project developing specifications and software libraries for storage of data that is structured as N-dimensional typed arrays (also known as tensors) in a way that is compatible with parallel and distributed computing applications.">
@@ -35,7 +35,7 @@
 
 
 
-<link rel="canonical" href="/404.html">
+<link rel="canonical" href="/content/es/conventions/">
 
 
 
@@ -85,7 +85,7 @@
 
   </head>
 
-  <body class="layout--default">
+  <body class="layout--single">
     <nav class="skip-links">
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
@@ -150,25 +150,164 @@
 
 
     <div class="initial-content">
-      <style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
+      
 
-<div class="container">
-  <h1>404</h1>
 
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  <h3 class="nav__title" style="padding-left: 0;">Content</h3>
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <span class="nav__sub-title">Acerca de</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/#description">Descripción</a></li>
+            
+              <li><a href="/#applications">Aplicaciones</a></li>
+            
+              <li><a href="/#features">Características</a></li>
+            
+              <li><a href="/#sponsorship">Patrocinio</a></li>
+            
+              <li><a href="/#videos">Videos</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">Subpáginas</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/content/es/adopters">Adoptantes</a></li>
+            
+              <li><a href="/blog">Blog</a></li>
+            
+              <li><a href="/content/es/community">Comunidad</a></li>
+            
+              <li><a href="/content/es/conventions">Convenciones</a></li>
+            
+              <li><a href="/content/es/datasets">Conjuntos de datos</a></li>
+            
+              <li><a href="/content/es/implementations">Implementaciones</a></li>
+            
+              <li><a href="/content/es/office-hours">Oficina de horas</a></li>
+            
+              <li><a href="/slides">Diapositivas</a></li>
+            
+              <li><a href="https://zarr-specs.readthedocs.io/">Especificación</a></li>
+            
+              <li><a href="/zeps">ZEPs</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Zarr Conventions">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="/content/es/conventions/" itemprop="url">Zarr Conventions
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <font size="4">
+The Zarr storage format is used in various domains and has active communities
+for each field. These communities have established several conventions on top
+of Zarr.<br /><br />
+
+Here are some of the conventions that are currently in use:<br />
+
+<ul>
+<li><a href="https://anndata.readthedocs.io/en/latest/">Anndata</a></li>
+<li><a href="https://github.com/openssbd/bdz">BDZ</a></li>
+<li><a href="https://github.com/zarr-developers/geozarr-spec">GeoZarr</a></li>
+<li><a href="https://docs.unidata.ucar.edu/nug/current/nczarr_head.html">NCZarr</a></li>
+<li><a href="https://github.com/ome/ome-zarr-py">OME-Zarr</a></li>
+<li><a href="https://docs.xarray.dev/en/stable/internals/zarr-encoding-spec.html">Xarray</a></li>
+</ul>
+
+If you're working on/know a new convention and want to add it to the list, feel free
+to send a PR to the website <a href="https://github.com/zarr-developers/zarr-developers.github.io/">repository</a>.
+</font>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
 </div>
 
       
